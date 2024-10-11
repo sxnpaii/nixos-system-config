@@ -12,6 +12,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.loader.efi.efiSysMountPoint = "/efi";
+  boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
+
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -55,7 +59,7 @@
 
   fileSystems = {
     "/mnt/sxnpaii_folder" = {
-      device = "/dev/nvme0n1p4";
+      device = "/dev/nvme0n1p7";
     };
   };
   # Enable sound with pipewire.
