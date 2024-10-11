@@ -9,54 +9,56 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      xbootldrMountPoint = "/boot";
+    };
+    efi.canTouchEfiVariables = true;
+  };
 
-  boot.loader.efi.efiSysMountPoint = "/efi";
-  boot.loader.systemd-boot.xbootldrMountPoint = "/boot";
-
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixos"; # Define hostname.
+    networkmanager.enable = true; # Enable networking
+    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Tashkent";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  # add keyboard input 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5.addons = [
-      pkgs.fcitx5-mozc
-    ];
+  i18n = {
+    # Select internationalisation properties.
+    defaultLocale = "en_US.UTF-8";
+    # add keyboard input 
+    inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = [
+        pkgs.fcitx5-mozc
+      ];
+    };
   };
-
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
-
-  };
-  hardware.nvidia.modesetting.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
   services = {
+    xserver = {
+      enable = true;
+      # Enable the GNOME Desktop Environment.
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      # Configure keymap in X11
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
     # Enable CUPS to print documents.
     printing.enable = true;
+    # Other services
     flatpak.enable = true;
   };
 
+  #  Hardware configurations 
+  hardware.nvidia.modesetting.enable = true;
+  # Automount second partition
   fileSystems = {
     "/mnt/sxnpaii_folder" = {
       device = "/dev/nvme0n1p7";
@@ -73,7 +75,7 @@
   };
 
   # services.xserver.libinput.enable = true; 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Defining a user account.
   users.users.sxnpaii = {
     isNormalUser = true;
     description = "Abdulxayev Xurshid";
