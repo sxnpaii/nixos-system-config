@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./configs/gaming.nix
       ./configs/styling.nix
     ];
 
@@ -33,6 +32,7 @@
       enabled = "fcitx5";
       fcitx5.addons = [
         pkgs.fcitx5-mozc
+        pkgs.fcitx5
       ];
     };
   };
@@ -55,8 +55,6 @@
     flatpak.enable = true;
   };
 
-  #  Hardware configurations 
-  hardware.nvidia.modesetting.enable = true;
   # Automount second partition
   fileSystems = {
     "/mnt/sxnpaii_folder" = {
