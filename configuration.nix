@@ -29,10 +29,9 @@
     defaultLocale = "en_US.UTF-8";
     # add keyboard input 
     inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = [
-        pkgs.fcitx5-mozc
-        pkgs.fcitx5
+      enabled = "ibus";
+      ibus.engines = with pkgs.ibus-engines; [
+        mozc
       ];
     };
   };
@@ -121,9 +120,7 @@
     vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
     nixpkgs-fmt
     # utils
-    wine
-    fcitx5
-    fcitx5-mozc
+    ibus
   ];
   # other apps with specific options
   # Some programs need SUID wrappers, can be configured further or are
