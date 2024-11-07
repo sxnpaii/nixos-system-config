@@ -57,7 +57,7 @@
   # Automount second partition
   fileSystems = {
     "/mnt/sxnpaii_folder" = {
-      device = "/dev/nvme0n1p7";
+      device = "/dev/nvme0n1p6";
     };
   };
   # Enable sound with pipewire.
@@ -103,24 +103,28 @@
     megasync
     spotify
     ventoy-full
+    libreoffice
     # development 
     android-studio
     vscode
     insomnia
     postman
-    nodejs-slim
+    nodePackages_latest.nodejs
     nodePackages.npm
     tmux
     htop
     wget
     git
-    tor
     android-tools
     libimobiledevice
     vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
     nixpkgs-fmt
+    ngrok
     # utils
     ibus
+    rclone
+    syncrclone
+    scrcpy
   ];
   # other apps with specific options
   # Some programs need SUID wrappers, can be configured further or are
