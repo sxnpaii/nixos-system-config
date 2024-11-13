@@ -88,44 +88,55 @@
   nixpkgs.config.allowUnfree = true;
 
 
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    # garbage collection
+    gc = {
+      automatic = true;
+      dates = "daily";
+    };
+    # enabling flakes and nix command
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+    };
   };
 
 
-  environment.systemPackages = with pkgs; [
-    # applications
-    obsidian
-    brave
-    google-chrome
-    vlc
-    telegram-desktop
-    megasync
-    spotify
-    ventoy-full
-    libreoffice
-    # development 
-    android-studio
-    vscode
-    insomnia
-    postman
-    nodePackages_latest.nodejs
-    nodePackages.npm
-    tmux
-    htop
-    wget
-    git
-    android-tools
-    libimobiledevice
-    vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
-    nixpkgs-fmt
-    ngrok
-    # utils
-    ibus
-    rclone
-    syncrclone
-    scrcpy
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # applications
+      obsidian
+      brave
+      google-chrome
+      vlc
+      telegram-desktop
+      megasync
+      spotify
+      ventoy-full
+      libreoffice
+      # development 
+      android-studio
+      vscode
+      insomnia
+      postman
+      nodePackages_latest.nodejs
+      nodePackages.npm
+      tmux
+      htop
+      wget
+      git
+      android-tools
+      libimobiledevice
+      vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
+      nixpkgs-fmt
+      ngrok
+      rustup
+      go
+      # utils
+      ibus
+      rclone
+      syncrclone
+      scrcpy
+    ];
   # other apps with specific options
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
