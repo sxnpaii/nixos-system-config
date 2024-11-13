@@ -105,21 +105,22 @@
     ventoy-full
     libreoffice
     # development 
-    android-studio
     vscode
-    insomnia
     postman
-    nodePackages_latest.nodejs
-    nodePackages.npm
+    rustup
     tmux
     htop
-    wget
-    git
+    android-studio
     android-tools
-    libimobiledevice
-    vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
-    nixpkgs-fmt
     ngrok
+    wget
+    rustup
+    insomnia
+    nodePackages.npm
+    nodePackages_latest.nodejs
+    nixpkgs-fmt
+    git
+    vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
     # utils
     ibus
     rclone
