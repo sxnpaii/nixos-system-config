@@ -16,7 +16,7 @@
   };
 
   networking = {
-    hostName = "nixos"; # Define hostname.
+    hostName = "SxnpaiiNixos"; # Define hostname.
     networkmanager.enable = true; # Enable networking
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
@@ -80,14 +80,6 @@
       #  thunderbird
     ];
   };
-
-  # Install Firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-
   nix = {
     # garbage collection
     gc = {
@@ -100,9 +92,15 @@
     };
   };
 
+  # Install Firefox.
+  programs.firefox.enable = true;
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs;
     [
+      # nixos packages
+      home-manager
       # applications
       obsidian
       brave
@@ -131,11 +129,13 @@
       ngrok
       rustup
       go
+      alacritty
+      docker
       # utils
       ibus
-      rclone
-      syncrclone
       scrcpy
+      # styles
+      gnome.gnome-tweaks
     ];
   # other apps with specific options
   # Some programs need SUID wrappers, can be configured further or are
