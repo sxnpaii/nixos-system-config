@@ -8,17 +8,17 @@
     ];
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
-    efi.canTouchEfiVariables = true;
   };
 
   networking = {
     hostName = "SxnpaiiNixos"; # Define hostname.
     networkmanager.enable = true; # Enable networking
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    # wireless.enable = true; # Enables wireless support via wpa_supplicant.
   };
 
   # Set your time zone.
@@ -29,7 +29,7 @@
     defaultLocale = "en_US.UTF-8";
     # add keyboard input 
     inputMethod = {
-      enabled = "ibus";
+      type = "ibus";
       ibus.engines = with pkgs.ibus-engines; [
         mozc
       ];
@@ -60,14 +60,16 @@
       device = "/dev/nvme0n1p6";
     };
   };
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
+  services = {
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
   };
 
   # services.xserver.libinput.enable = true; 
@@ -96,7 +98,11 @@
   programs.firefox.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
   environment.systemPackages = with pkgs;
     [
       # nixos packages
@@ -114,29 +120,33 @@
       # development 
       android-studio
       vscode
-      insomnia
       postman
-      nodePackages_latest.nodejs
-      nodePackages.npm
       tmux
       htop
-      wget
       git
       android-tools
-      libimobiledevice
       vscode-extensions.b4dm4n.vscode-nixpkgs-fmt
       nixpkgs-fmt
       ngrok
       rustup
       go
       alacritty
-      docker
-      # utils
-      ibus
       scrcpy
-      # styles
-      gnome.gnome-tweaks
+      # node
+      nodePackages_latest.vercel
+      nodePackages_latest.nodejs
+      nodePackages_latest.npm
+      # styles langs
+      ibus
+      gnome-tweaks
     ];
+  # enable docker
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+
   # other apps with specific options
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
