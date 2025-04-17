@@ -1,6 +1,9 @@
 { config, pkgs, nixpkgs, ... }:
 # ~/.config/home-manager/home.nix
 {
+  imports = [
+    ./modules/programs/alacritty.nix
+  ];
   home = {
     username = "sxnpaii";
     homeDirectory = "/home/sxnpaii";

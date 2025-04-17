@@ -10,5 +10,6 @@
     ventoy-full
     libreoffice
     anki
+    firefox
   ];
 }
