@@ -7,8 +7,8 @@
     noto-fonts-cjk-sans
     source-han-sans-japanese
     inter
-    # nerdfonts.jetbrains-mono
-    # nerdfonts.fira-code
+    # nerd-fonts.jetbrains-mono
+    # nerd-fonts.fira-code
     (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
   ];
   qt = {

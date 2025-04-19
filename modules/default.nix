@@ -6,5 +6,6 @@
       ./settings/default.nix
       ./users/default.nix
       ./programs/default.nix
+      ./env-vars.nix
     ];
 }
