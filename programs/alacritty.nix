@@ -2,6 +2,9 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      env = {
+        WINIT_UNIX_BACKEND = "wayland"; # or "wayland" if you're sure it's supported
+      };
       general = {
         import = [ "~/.config/alacritty/themes/themes/night_owl.toml" ];
       };
@@ -16,9 +19,7 @@
         opacity = 0.9;
         blur = true;
       };
-      cursor = {
-        style = "Underline";
-      };
+      cursor = { style = "Underline"; };
     };
   };
 }

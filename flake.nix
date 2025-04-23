@@ -8,18 +8,35 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.SxnpaiiNixos = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+    let
       system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.sxnpaii = import ./home.nix;
-        }
-      ];
+      username = "sxnpaii";
+      hostname = "SxnpaiiNixos";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      nixosConfigurations.hostname = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/${hostname}/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.sxnpaii = import ./home.nix;
+          }
+        ];
+      };
+      homeConfigurations."${username}" =
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home.nix ];
+          extraSpecialArgs = { isNixOS = false; };
+        };
+
     };
-  };
 }
+

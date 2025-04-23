@@ -2,10 +2,7 @@
 
 {
 
-  imports = [
-    ./hardware-configuration.nix
-    ./modules/default.nix
-  ];
+  imports = [ ./hardware-configuration.nix ../../modules/default.nix ];
   # enable docker
   virtualisation.docker.rootless = {
     enable = true;
